@@ -1,0 +1,1486 @@
+<!doctype html>
+<!-- Last Published: Thu Jan 22 2026 19:36:15 GMT+0000 (Coordinated Universal Time) -->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Lucent - Interview Analyzer Platform Case Study</title>
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <link
+            href="https://cdn.prod.website-files.com/669ffd7536d2d5697935b89b/css/kedavra.webflow.shared.067a6c392.min.css"
+            rel="stylesheet"
+            type="text/css"
+            integrity="sha384-BnpsOSewrPJLlzd0qee8fQKirs87aJS3Es6oHajZUdcjydTjOitNSfVZY3f5XDTd"
+            crossorigin="anonymous"
+        />
+        <link href="https://fonts.googleapis.com" rel="preconnect" />
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous" />
+
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@1,600&family=Press+Start+2P&display=swap" rel="stylesheet" />
+        <link
+            href="https://cdn.prod.website-files.com/669ffd7536d2d5697935b89b/684c79dd06ea4c1c253b7743_Favicon.png"
+            rel="shortcut icon"
+            type="image/x-icon"
+        />
+        <link
+            href="https://cdn.prod.website-files.com/669ffd7536d2d5697935b89b/684c7a023a8801fbc185a7f3_Apple-Touch.png"
+            rel="apple-touch-icon"
+        />
+        <style>
+            @media (width > 991px) {
+                * {
+                    cursor: none !important;
+                }
+            }
+
+            ::selection {
+                color: var(--black);
+                background-color: var(--primary);
+            }
+
+            footer ::selection {
+                color: var(--primary);
+                background-color: var(--black);
+            }
+
+            html,
+            body {
+                background: black;
+            }
+
+            body {
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+
+            .bar-track {
+                animation: scroll 40s linear infinite;
+            }
+
+            #loader[hidden] {
+                display: none !important;
+                visibility: hidden !important;
+                pointer-events: none !important;
+            }
+
+            @keyframes scroll {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(-50%);
+                }
+            }
+
+            .bar-track:hover {
+                animation-play-state: paused;
+            }
+
+            .navbar.fixed {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 2137;
+            }
+
+            .custom-cursor {
+                transform: translate(-50%, -50%) scale(0);
+                mix-blend-mode: difference;
+            }
+
+            .button-v2 {
+                transition: transform 0.6s cubic-bezier(0.34, 2.48, 0.48, 1);
+            }
+
+            .button-v2-ripple {
+                border-radius: 50% 50% 0 0;
+                transform: translateY(104%);
+                transition:
+                    transform 0.5s cubic-bezier(0.4, 0, 0, 1),
+                    border-radius 0.5s cubic-bezier(0.4, 0, 0, 1);
+                will-change: auto;
+            }
+
+            .button-v2-text {
+                transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            .button-v2-text div + div {
+                color: black;
+            }
+
+            .button-v2:hover {
+                transform: scaleX(1.02);
+                transition: transform 0.6s cubic-bezier(0.34, 3.64, 0.64, 1);
+            }
+
+            .button-v2:hover .button-v2-text {
+                transform: translateY(-52%);
+            }
+
+            .button-v2:hover .button-v2-ripple {
+                transition-duration: 0.5s, 0.9s;
+                transform: translateY(0%);
+                border-radius: 0%;
+            }
+
+            .footer-content-right.more:has(.footer-socials:hover) .find-me-on-arrow {
+                transform: translateX(12px);
+            }
+
+            .footer-back-to-the-top:hover svg {
+                transform: translateY(-12px);
+            }
+        </style>
+        <style>
+            .case-next:hover .next-case-icon {
+                transform: translateX(24px);
+                opacity: 1;
+            }
+
+            .back-link:hover svg {
+                margin-left: 0px;
+            }
+
+            .next-case-icon {
+                transition: 0.32s cubic-bezier(0.34, 1.56, 0.64, 1);
+            }
+        </style>
+    </head>
+    <body class="body">
+        <div id="loader" class="loader">
+            <div class="w-layout-blockcontainer loader-container w-container">
+                <div class="content in-loader">
+                    <div class="content-left content-left-in-loader">
+                        <div class="left-hero-text-wrapper in-loader">
+                            <p class="content-left-title left-title-in-loader">
+                                Loading<span id="loader-dots" class="loader-dots">...</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="line in-loader"></div>
+                    <div class="content-right content-right-in-loader">
+                        <div class="right-hero-text-wrapper in-loader">
+                            <div class="loader-counter"><span id="loader-count" class="loader-count">100</span>%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="custom-cursor" data-wf--custom-cursor--variant="base" class="custom-cursor">
+            <div class="cursor-text">view</div>
+        </div>
+        <header class="header">
+            <div class="bar black top">
+                <div class="bar-track">
+                    <div class="bar-track-item">Now accepting projects</div>
+                    <div class="bar-track-item">Now accepting projects</div>
+                    <div class="bar-track-item">Now accepting projects</div>
+                    <div class="bar-track-item">Now accepting projects</div>
+                    <div class="bar-track-item">Now accepting projects</div>
+                    <div class="bar-track-item">Now accepting projects</div>
+                    <div class="bar-track-item">Now accepting projects</div>
+                    <div class="bar-track-item">Now accepting projects</div>
+                    <div class="bar-track-item">Now accepting projects</div>
+                    <div class="bar-track-item">Now accepting projects</div>
+                    <div class="bar-track-item">Now accepting projects</div>
+                    <div class="bar-track-item">Now accepting projects</div>
+                    <div class="bar-track-item">Now accepting projects</div>
+                    <div class="bar-track-item">Now accepting projects</div>
+                    <div class="bar-track-item">Now accepting projects</div>
+                    <div class="bar-track-item">Now accepting projects</div>
+                </div>
+            </div>
+        </header>
+        <main class="wrapper case-wrapper">
+            <div class="w-layout-blockcontainer case-container w-container">
+                <div class="case-content-track">
+                    <div class="case-content-left">
+                        <div class="case-info-top">
+                            <a href="/" class="back-link w-inline-block"
+                                ><svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="100%"
+                                    viewBox="0 0 88 84"
+                                    fill="none"
+                                    class="back-link-icon"
+                                >
+                                    <path
+                                        d="M46.3636 83.1534L37.5852 74.4602L63.8778 48.1676H0V35.4688H63.8778L37.5852 9.21875L46.3636 0.482953L87.6989 41.8182L46.3636 83.1534Z"
+                                        fill="black"
+                                    ></path>
+                                </svg>
+                                <div class="back-link-text">Back</div></a
+                            >
+                            <div class="case-info-heading">
+                                <h1 class="case-title">Lucent</h1>
+                                <h2 class="case-subtitle">
+                                    Analyzes interview performance across speech, tone, and body language in real time.
+                                </h2>
+                            </div>
+                            <div class="case-info-description">
+                                <div class="case-industry">
+                                    <p class="case-industry-label">Industry</p>
+                                    <p class="case-industry-value">AI/Developer Tools</p>
+                                </div>
+                                <div class="case-about">
+                                    <p class="case-about-label">About</p>
+                                    <p class="case-about-value">
+                                       Lucent uses multimodal AI to evaluate interview performance — transcribing speech with Whisper, scoring tone through audio classification, and analyzing eye contact and expressions via computer vision, all fused into a single actionable performance report.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="case-info-bottom">
+                            <div class="scope-list">
+                                <div class="scope-item"><div class="scope-item-label">machine learning</div></div>
+                                <div class="scope-item"><div class="scope-item-label">computer vision</div></div>
+                                <div class="scope-item"><div class="scope-item-label">full-stack application</div></div>
+                                <div class="scope-item"><div class="scope-item-label">system design</div></div>
+                            </div>
+                            <div class="case-info-button">
+                                <a
+                                    href="mailto:shanmukareddygarugu@gmail.com?subject=I%E2%80%99ve%20got%20an%20amazing%20idea!"
+                                    class="button-v2 case-info w-inline-block"
+                                    ><div class="button-v2-border"></div>
+                                    <div class="button-v2-ripple-wrapper">
+                                        <div class="button-v2-ripple dark"></div>
+                                    </div>
+                                    <div class="button-v2-text-wrapper dark">
+                                        <div class="button-v2-text dark">
+                                            <div>Let&#x27;s talk</div>
+                                            <div>Let&#x27;s talk</div>
+                                        </div>
+                                    </div></a
+                                ><a
+                                    href="mailto:shanmukareddygarugu@gmail.com?subject=I%E2%80%99ve%20got%20an%20amazing%20idea!"
+                                    class="button-v2 case-info scrollable w-inline-block"
+                                    ><div class="button-v2-border"></div>
+                                    <div class="button-v2-ripple-wrapper">
+                                        <div class="button-v2-ripple dark"></div>
+                                    </div>
+                                    <div class="button-v2-text-wrapper dark">
+                                        <div class="button-v2-text dark">
+                                            <div>Let&#x27;s talk</div>
+                                            <div>Let&#x27;s talk</div>
+                                        </div>
+                                    </div></a
+                                >
+                            </div>
+                            <div class="case-overlay-container w-embed">
+                                <div
+                                    style="
+                                        position: absolute;
+                                        inset: 0;
+                                        z-index: 1;
+                                        backdrop-filter: blur(0.5px);
+                                        -webkit-backdrop-filter: blur(0.5px);
+                                        mask-image: linear-gradient(
+                                            to bottom,
+                                            rgba(0, 0, 0, 0) 0%,
+                                            rgba(0, 0, 0, 1) 12.5%,
+                                            rgba(0, 0, 0, 1) 25%,
+                                            rgba(0, 0, 0, 0) 37.5%
+                                        );
+                                        -webkit-mask-image: linear-gradient(
+                                            to bottom,
+                                            rgba(0, 0, 0, 0) 0%,
+                                            rgba(0, 0, 0, 1) 12.5%,
+                                            rgba(0, 0, 0, 1) 25%,
+                                            rgba(0, 0, 0, 0) 37.5%
+                                        );
+                                        pointer-events: none;
+                                    "
+                                ></div>
+                                <div
+                                    style="
+                                        position: absolute;
+                                        inset: 0;
+                                        z-index: 2;
+                                        backdrop-filter: blur(0.5625px);
+                                        -webkit-backdrop-filter: blur(0.5625px);
+                                        mask-image: linear-gradient(
+                                            to bottom,
+                                            rgba(0, 0, 0, 0) 12.5%,
+                                            rgba(0, 0, 0, 1) 25%,
+                                            rgba(0, 0, 0, 1) 37.5%,
+                                            rgba(0, 0, 0, 0) 50%
+                                        );
+                                        -webkit-mask-image: linear-gradient(
+                                            to bottom,
+                                            rgba(0, 0, 0, 0) 12.5%,
+                                            rgba(0, 0, 0, 1) 25%,
+                                            rgba(0, 0, 0, 1) 37.5%,
+                                            rgba(0, 0, 0, 0) 50%
+                                        );
+                                        pointer-events: none;
+                                    "
+                                ></div>
+                                <div
+                                    style="
+                                        position: absolute;
+                                        inset: 0;
+                                        z-index: 3;
+                                        backdrop-filter: blur(1.125px);
+                                        -webkit-backdrop-filter: blur(1.125px);
+                                        mask-image: linear-gradient(
+                                            to bottom,
+                                            rgba(0, 0, 0, 0) 25%,
+                                            rgba(0, 0, 0, 1) 37.5%,
+                                            rgba(0, 0, 0, 1) 50%,
+                                            rgba(0, 0, 0, 0) 62.5%
+                                        );
+                                        -webkit-mask-image: linear-gradient(
+                                            to bottom,
+                                            rgba(0, 0, 0, 0) 25%,
+                                            rgba(0, 0, 0, 1) 37.5%,
+                                            rgba(0, 0, 0, 1) 50%,
+                                            rgba(0, 0, 0, 0) 62.5%
+                                        );
+                                        pointer-events: none;
+                                    "
+                                ></div>
+                                <div
+                                    style="
+                                        position: absolute;
+                                        inset: 0;
+                                        z-index: 4;
+                                        backdrop-filter: blur(2.25px);
+                                        -webkit-backdrop-filter: blur(2.25px);
+                                        mask-image: linear-gradient(
+                                            to bottom,
+                                            rgba(0, 0, 0, 0) 37.5%,
+                                            rgba(0, 0, 0, 1) 50%,
+                                            rgba(0, 0, 0, 1) 62.5%,
+                                            rgba(0, 0, 0, 0) 75%
+                                        );
+                                        -webkit-mask-image: linear-gradient(
+                                            to bottom,
+                                            rgba(0, 0, 0, 0) 37.5%,
+                                            rgba(0, 0, 0, 1) 50%,
+                                            rgba(0, 0, 0, 1) 62.5%,
+                                            rgba(0, 0, 0, 0) 75%
+                                        );
+                                        pointer-events: none;
+                                    "
+                                ></div>
+                                <div
+                                    style="
+                                        position: absolute;
+                                        inset: 0;
+                                        z-index: 5;
+                                        backdrop-filter: blur(4.5px);
+                                        -webkit-backdrop-filter: blur(4.5px);
+                                        mask-image: linear-gradient(
+                                            to bottom,
+                                            rgba(0, 0, 0, 0) 50%,
+                                            rgba(0, 0, 0, 1) 62.5%,
+                                            rgba(0, 0, 0, 1) 75%,
+                                            rgba(0, 0, 0, 0) 87.5%
+                                        );
+                                        -webkit-mask-image: linear-gradient(
+                                            to bottom,
+                                            rgba(0, 0, 0, 0) 50%,
+                                            rgba(0, 0, 0, 1) 62.5%,
+                                            rgba(0, 0, 0, 1) 75%,
+                                            rgba(0, 0, 0, 0) 87.5%
+                                        );
+                                        pointer-events: none;
+                                    "
+                                ></div>
+                                <div
+                                    style="
+                                        position: absolute;
+                                        inset: 0;
+                                        z-index: 6;
+                                        backdrop-filter: blur(9px);
+                                        -webkit-backdrop-filter: blur(9px);
+                                        mask-image: linear-gradient(
+                                            to bottom,
+                                            rgba(0, 0, 0, 0) 62.5%,
+                                            rgba(0, 0, 0, 1) 75%,
+                                            rgba(0, 0, 0, 1) 87.5%,
+                                            rgba(0, 0, 0, 0) 100%
+                                        );
+                                        -webkit-mask-image: linear-gradient(
+                                            to bottom,
+                                            rgba(0, 0, 0, 0) 62.5%,
+                                            rgba(0, 0, 0, 1) 75%,
+                                            rgba(0, 0, 0, 1) 87.5%,
+                                            rgba(0, 0, 0, 0) 100%
+                                        );
+                                        pointer-events: none;
+                                    "
+                                ></div>
+                                <div
+                                    style="
+                                        position: absolute;
+                                        inset: 0;
+                                        z-index: 7;
+                                        backdrop-filter: blur(18px);
+                                        -webkit-backdrop-filter: blur(18px);
+                                        mask-image: linear-gradient(
+                                            to bottom,
+                                            rgba(0, 0, 0, 0) 75%,
+                                            rgba(0, 0, 0, 1) 87.5%,
+                                            rgba(0, 0, 0, 1) 100%
+                                        );
+                                        -webkit-mask-image: linear-gradient(
+                                            to bottom,
+                                            rgba(0, 0, 0, 0) 75%,
+                                            rgba(0, 0, 0, 1) 87.5%,
+                                            rgba(0, 0, 0, 1) 100%
+                                        );
+                                        pointer-events: none;
+                                    "
+                                ></div>
+                                <div
+                                    style="
+                                        position: absolute;
+                                        inset: 0;
+                                        z-index: 8;
+                                        backdrop-filter: blur(36px);
+                                        -webkit-backdrop-filter: blur(36px);
+                                        mask-image: linear-gradient(
+                                            to bottom,
+                                            rgba(0, 0, 0, 0) 87.5%,
+                                            rgba(0, 0, 0, 1) 100%
+                                        );
+                                        -webkit-mask-image: linear-gradient(
+                                            to bottom,
+                                            rgba(0, 0, 0, 0) 87.5%,
+                                            rgba(0, 0, 0, 1) 100%
+                                        );
+                                        pointer-events: none;
+                                    "
+                                ></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="line"></div>
+                <div class="case-content-right">
+                    <img
+                        src="https://cdn.prod.website-files.com/669ffd7536d2d5697935b89b/69125810009aaa8d18191e0d_Hiver_01.avif"
+                        loading="lazy"
+                        alt="Hiver app homepage showing task and project management interface with calendar, team files, and progress board on mobile device."
+                        class="case-image"
+                    /><img
+                        src="https://cdn.prod.website-files.com/669ffd7536d2d5697935b89b/69125811f555833644b6cc56_Hiver_02.avif"
+                        loading="lazy"
+                        alt="Interface showing a project management platform with tasks categorized as On Hold and Done, alongside a section highlighting features like monitoring progress, scheduling, chats, and analytics."
+                        class="case-image hidden"
+                    /><img
+                        src="https://cdn.prod.website-files.com/669ffd7536d2d5697935b89b/6912581072c342762fbd6752_Hiver_03.avif"
+                        loading="lazy"
+                        alt="Two overlapping browser windows showing a time tracker and a November 2024 calendar with a call to action to start a free 30-day trial to boost team productivity."
+                        class="case-image hidden"
+                    /><img
+                        src="https://cdn.prod.website-files.com/669ffd7536d2d5697935b89b/691258117584a0bc0c024087_Hiver_04.avif"
+                        loading="lazy"
+                        alt="Desktop and mobile screens showing Hiver app dashboards with team productivity tools, pricing plans, and customer testimonials."
+                        class="case-image"
+                    />
+                    <div class="case-video hidden w-embed">
+                        <video
+                            src="https://b8v44sqju4.ufs.sh/f/88ud4D12FtPOmXkqfvVt6yMxqv1PL3ZseJSG8hNW4QVIujOm"
+                            playsinline
+                            autoplay
+                            loop
+                            muted
+                            preload="auto"
+                            style="width: 100%; height: auto; display: block; object-fit: cover"
+                        ></video>
+                    </div>
+                    <img
+                        src="https://cdn.prod.website-files.com/669ffd7536d2d5697935b89b/691258110e1d7b7db5721594_Hiver_06.avif"
+                        loading="lazy"
+                        alt="User interface showing a time tracker with tasks listed by date and a calendar view of November 2024 with scheduled events."
+                        class="case-image hidden"
+                    /><img
+                        src="https://cdn.prod.website-files.com/669ffd7536d2d5697935b89b/69125810a5c65d5fbc1a6443_Hiver_07.avif"
+                        loading="lazy"
+                        alt="Project management dashboard showing quick access cards for new tasks, active projects, and scheduled meetings; list of today&#x27;s tasks with assigned team members and comments; team efficiency bar chart; and calendar with scheduled events on May 18."
+                        class="case-image"
+                    />
+                    <div class="case-video w-embed">
+                        <video
+                            src="https://b8v44sqju4.ufs.sh/f/88ud4D12FtPOZBZ5B9COuYJpiqBFZEs5GTxfMez4rVLWwkDX"
+                            playsinline
+                            autoplay
+                            loop
+                            muted
+                            preload="auto"
+                            style="width: 100%; height: auto; display: block; object-fit: cover"
+                        ></video>
+                    </div>
+                    <img
+                        src="https://cdn.prod.website-files.com/669ffd7536d2d5697935b89b/69125810cd6f3f1058dc8e1c_Hiver_09.avif"
+                        loading="lazy"
+                        alt="User interface of a cloud storage dashboard showing project team folders, recently modified files with file sizes and dates, storage usage of 1.6TB from 5TB, and options to upgrade cloud plan."
+                        class="case-image"
+                    />
+                    <div class="case-video w-embed">
+                        <video
+                            src="https://b8v44sqju4.ufs.sh/f/88ud4D12FtPOaI89wIJ1JTAQDtv5YIX8LK0BEb9mOr3uj7Sq"
+                            playsinline
+                            autoplay
+                            loop
+                            muted
+                            preload="auto"
+                            style="width: 100%; height: auto; display: block; object-fit: cover"
+                        ></video>
+                    </div>
+                    <img
+                        src="https://cdn.prod.website-files.com/669ffd7536d2d5697935b89b/691258101bbc50323d06cbae_Hiver_11.avif"
+                        loading="lazy"
+                        alt="Digital progress board with columns Backlog, In Progress, On Hold, and Done, listing tasks with priority labels and user avatars."
+                        class="case-image"
+                    />
+                    <div class="case-video w-embed">
+                        <video
+                            src="https://b8v44sqju4.ufs.sh/f/88ud4D12FtPOftGDvdnNWXi8YcGFU1HTvw9tMp0yhABCmlxr"
+                            playsinline
+                            autoplay
+                            loop
+                            muted
+                            preload="auto"
+                            style="width: 100%; height: auto; display: block; object-fit: cover"
+                        ></video>
+                    </div>
+                    <img
+                        src="https://cdn.prod.website-files.com/669ffd7536d2d5697935b89b/69125810e0accb23bd9a2259_Hiver_12.avif"
+                        loading="lazy"
+                        alt="November 2024 calendar with weekly sprint planning, social media planning, design retrospectives, and tech reviews displayed in a digital interface."
+                        class="case-image"
+                    /><img
+                        src="https://cdn.prod.website-files.com/669ffd7536d2d5697935b89b/69125811df83ac3ff5cec651_Hiver_13.avif"
+                        loading="lazy"
+                        alt="Messaging app interface showing a conversation between Noah Brown and Sofia Petrovna discussing improvements to managing threads and quoting messages."
+                        class="case-image"
+                    />
+                    <div class="case-video w-embed">
+                        <video
+                            src="https://b8v44sqju4.ufs.sh/f/88ud4D12FtPOCb5RmDFyPjkEKa0BNqehzYxCp4GiVWb5UHvS"
+                            playsinline
+                            autoplay
+                            loop
+                            muted
+                            preload="auto"
+                            style="width: 100%; height: auto; display: block; object-fit: cover"
+                        ></video>
+                    </div>
+                    <img
+                        src="https://cdn.prod.website-files.com/669ffd7536d2d5697935b89b/69125810a1ae78b340021015_Hiver_15.avif"
+                        loading="lazy"
+                        alt="Time Tracker app interface showing tasks with dates, times, project tags, and priority levels for last week, totaling 41 hours and 30 minutes."
+                        class="case-image"
+                    />
+                    <div class="case-video w-embed">
+                        <video
+                            src="https://b8v44sqju4.ufs.sh/f/88ud4D12FtPOdNfk8OL1VGZAJlDmvCpK83Nn46UsbM2aEBOh"
+                            playsinline
+                            autoplay
+                            loop
+                            muted
+                            preload="auto"
+                            style="width: 100%; height: auto; display: block; object-fit: cover"
+                        ></video>
+                    </div>
+                    <img
+                        src="https://cdn.prod.website-files.com/669ffd7536d2d5697935b89b/69125810f7ca61cf0d56c04b_Hiver_17.avif"
+                        loading="lazy"
+                        alt="Team directory interface listing Admin Accounts with workspace owner labels and Standard Accounts with various roles like UI Designer and Frontend Developer, each with avatar icons and edit and delete options."
+                        class="case-image"
+                    />
+                    <div class="case-video w-embed">
+                        <video
+                            src="https://b8v44sqju4.ufs.sh/f/88ud4D12FtPOYZkOCKtaa2CPhtY7lyuoiQq01cgDI8mjdpZ3"
+                            playsinline
+                            autoplay
+                            loop
+                            muted
+                            preload="auto"
+                            style="width: 100%; height: auto; display: block; object-fit: cover"
+                        ></video>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <a id="next-case" href="/works/auditr" class="case-next w-inline-block"
+            ><div class="next-case-container">
+                <div class="next-case-left">
+                    <div class="case-explore-next-label">
+                        Explore<span class="desktop-next-line"> </span>next project
+                    </div>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="100%"
+                        viewBox="0 0 24 24"
+                        class="next-case-icon at-top"
+                    >
+                        <path
+                            fill="currentColor"
+                            d="M4.5 11h11.586l-4.5-4.5L13 5.086L19.914 12L13 18.914L11.586 17.5l4.5-4.5H4.5z"
+                        ></path>
+                    </svg>
+                </div>
+                <div class="line dark next-case"></div>
+                <div class="next-case-right">
+                    <div class="case-next-label">Auditr</div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 24 24" class="next-case-icon">
+                        <path
+                            fill="currentColor"
+                            d="M4.5 11h11.586l-4.5-4.5L13 5.086L19.914 12L13 18.914L11.586 17.5l4.5-4.5H4.5z"
+                        ></path>
+                    </svg>
+                </div>
+            </div>
+            <img
+                id="next-image"
+                loading="lazy"
+                alt="Laptop screen displaying a clothing website with a male model wearing beige cargo pants and a black jacket, alongside a product grid of various pants with prices."
+                src="https://cdn.prod.website-files.com/669ffd7536d2d5697935b89b/6910cf580659cf1cfead9dab_Auditr_Home.avif"
+                sizes="(max-width: 738px) 100vw, 738px"
+                srcset="
+                    https://cdn.prod.website-files.com/669ffd7536d2d5697935b89b/6910cf580659cf1cfead9dab_Auditr_Home-p-500.avif 500w,
+                    https://cdn.prod.website-files.com/669ffd7536d2d5697935b89b/6910cf580659cf1cfead9dab_Auditr_Home.avif       738w
+                "
+                class="next-image"
+        /></a>
+        <footer id="footer" data-wf--footer--variant="base" class="footer">
+            <div class="footer-reveal">
+                <div class="w-layout-blockcontainer container footer-container w-container">
+                    <div class="content footer-content">
+                        <div class="content-left footer-content-left">
+                            <p class="content-left-title footer-left-title">
+                                Got an idea?<span class="desktop-next-line"> </span>
+                            </p>
+                        </div>
+                        <div class="line footer-line"></div>
+                        <div class="content-right footer-content-right">
+                            <h2 class="footer-heading">Let's build <br />something.</h2>
+                            <a
+                                href="mailto:shanmukareddygarugu@gmail.com?subject=I%E2%80%99ve%20got%20an%20amazing%20idea!"
+                                class="button-v2 w-inline-block"
+                                ><div class="button-v2-border"></div>
+                                <div class="button-v2-ripple-wrapper"><div class="button-v2-ripple"></div></div>
+                                <div class="button-v2-text-wrapper">
+                                    <div class="button-v2-text">
+                                        <div>Let&#x27;s talk</div>
+                                        <div>Let&#x27;s talk</div>
+                                    </div>
+                                </div></a
+                            >
+                        </div>
+                    </div>
+                    <div class="content footer-content more">
+                        <div class="content-left footer-content-left more">
+                            <a href="#" class="footer-back-to-the-top w-inline-block"
+                                ><svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="100%"
+                                    viewBox="0 0 24 24"
+                                    class="back-to-the-top-arrow"
+                                >
+                                    <path
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M12 5v14m6-8l-6-6m-6 6l6-6"
+                                    ></path>
+                                </svg>
+                                <div>Back to top</div></a
+                            >
+                        </div>
+                        <div class="line footer-line"></div>
+                        <div class="content-right footer-content-right more">
+                            <a href="#" class="footer-back-to-the-top mobile w-inline-block"
+                                ><div class="text-block-4">↑ Back to top</div></a
+                            >
+                            <div class="footer-find-me-on">
+                                <div>Find me on</div>
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="100%"
+                                    viewBox="0 0 24 24"
+                                    class="find-me-on-arrow"
+                                >
+                                    <path
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M5 12h14m-6 6l6-6m-6-6l6 6"
+                                    ></path>
+                                </svg>
+                            </div>
+                            <div class="footer-socials">
+                                <a
+                                    href="https://github.com/Shanmukh89"
+                                    target="_blank"
+                                    class="footer-social"
+                                    >Github</a
+                                >
+                            </div>
+                            <div class="footer-socials">
+                                <a
+                                    href="https://www.linkedin.com/in/sanmuk/"
+                                    target="_blank"
+                                    class="footer-social"
+                                    >LinkedIn</a
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bar black bottom">
+                    <div class="bar-track">
+                        <div class="bar-track-item">All rights resevred. 2026. / sanmuk.me</div>
+                        <div class="bar-track-item">All rights resevred. 2026. / sanmuk.me</div>
+                        <div class="bar-track-item">All rights resevred. 2026. / sanmuk.me</div>
+                        <div class="bar-track-item">All rights resevred. 2026. / sanmuk.me</div>
+                        <div class="bar-track-item">All rights resevred. 2026. / sanmuk.me</div>
+                        <div class="bar-track-item">All rights resevred. 2026. / sanmuk.me</div>
+                        <div class="bar-track-item">All rights resevred. 2026. / sanmuk.me</div>
+                        <div class="bar-track-item">All rights resevred. 2026. / sanmuk.me</div>
+                        <div class="bar-track-item">All rights resevred. 2026. / sanmuk.me</div>
+                        <div class="bar-track-item">All rights resevred. 2026. / sanmuk.me</div>
+                        <div class="bar-track-item">All rights resevred. 2026. / sanmuk.me</div>
+                        <div class="bar-track-item">All rights resevred. 2026. / sanmuk.me</div>
+                        <div class="bar-track-item">All rights resevred. 2026. / sanmuk.me</div>
+                        <div class="bar-track-item">All rights resevred. 2026. / sanmuk.me</div>
+                        <div class="bar-track-item">All rights resevred. 2026. / sanmuk.me</div>
+                        <div class="bar-track-item">All rights resevred. 2026. / sanmuk.me</div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <script
+            src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=669ffd7536d2d5697935b89b"
+            type="text/javascript"
+            integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdn.prod.website-files.com/669ffd7536d2d5697935b89b/js/webflow.schunk.aa6c3b5983e20580.js"
+            type="text/javascript"
+            integrity="sha384-w53ww582DRzUg9tzEcsYZDhbP5d9MXIsQGoIPgRN24nHZz8FlCh7cTtOZiyfi1G8"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdn.prod.website-files.com/669ffd7536d2d5697935b89b/js/webflow.a9ba356d.d2f30196489a2709.js"
+            type="text/javascript"
+            integrity="sha384-csGkhjFGgkSz8t16Ud75ydCbjLPF/KwVXVDchd4zvLDKt8Bf0NTemUS5BXjXjjmC"
+            crossorigin="anonymous"
+        ></script>
+        <script src="https://cdn.prod.website-files.com/gsap/3.14.2/gsap.min.js" type="text/javascript"></script>
+        <script
+            src="https://cdn.prod.website-files.com/gsap/3.14.2/ScrollTrigger.min.js"
+            type="text/javascript"
+        ></script>
+        <script src="https://cdn.prod.website-files.com/gsap/3.14.2/SplitText.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            gsap.registerPlugin(ScrollTrigger, SplitText);
+        </script>
+        <script src="https://unpkg.com/lenis@1.2.3/dist/lenis.min.js"></script>
+
+        <script>
+            (function () {
+                const LOADER_KEY = "loaderSeen";
+
+                const loader = document.getElementById("loader");
+                const loaderContainer = document.querySelector(".loader-container");
+                const loaderDots = document.getElementById("loader-dots");
+                const loaderCount = document.getElementById("loader-count");
+
+                if (!loader || !loaderContainer || !loaderDots || !loaderCount) return;
+
+                let count = 0;
+                let dots = "";
+                let isPageLoaded = false;
+                let countReached100 = false;
+                let dotInterval = null;
+                const startTime = Date.now();
+
+                const hasSeenLoader = sessionStorage.getItem(LOADER_KEY);
+
+                const resetLoaderPosition = () => {
+                    gsap.set(loader, { y: "0%" });
+                };
+
+                const updateDots = () => {
+                    if (count >= 100 && isPageLoaded) {
+                        loaderDots.textContent = "...";
+                        return;
+                    }
+                    dots = dots.length < 3 ? dots + "." : "";
+                    loaderDots.textContent = dots;
+                };
+
+                const updateCount = () => {
+                    const elapsed = (Date.now() - startTime) / 1000;
+                    const minTimeReached = elapsed >= 2;
+
+                    if (count < 100) {
+                        count += Math.random() * 3;
+                        if (count > 100) count = 100;
+                        loaderCount.textContent = Math.floor(count);
+                    }
+
+                    if (count >= 100 && minTimeReached && isPageLoaded) {
+                        if (!countReached100) {
+                            countReached100 = true;
+                            loaderCount.textContent = 100;
+                            finishLoader();
+                        }
+                    } else {
+                        requestAnimationFrame(updateCount);
+                    }
+                };
+
+                const finishLoader = () => {
+                    if (dotInterval) clearInterval(dotInterval);
+
+                    gsap.to(loader, {
+                        y: "-100%",
+                        duration: 1.2,
+                        ease: "power3.inOut",
+                        onComplete: () => {
+                            gsap.set(loader, {
+                                y: "0%",
+                                autoAlpha: 0,
+                                display: "none",
+                            });
+                            loaderContainer.style.display = "none";
+                        },
+                    });
+                };
+
+                const showLoaderFromBottom = (href) => {
+                    gsap.set(loader, {
+                        y: "100%",
+                        autoAlpha: 1,
+                        display: "block",
+                    });
+
+                    gsap.to(loader, {
+                        y: "0%",
+                        duration: 0.8,
+                        ease: "power3.inOut",
+                        onComplete: () => {
+                            window.location.href = href;
+                        },
+                    });
+                };
+
+                document.querySelectorAll(".case-link, .back-link, .case-next").forEach((link) => {
+                    link.addEventListener("click", (e) => {
+                        const href = link.getAttribute("href");
+                        if (!href) return;
+                        e.preventDefault();
+                        showLoaderFromBottom(href);
+                    });
+                });
+
+                if (!hasSeenLoader) {
+                    gsap.set(loader, {
+                        y: "0%",
+                        autoAlpha: 1,
+                        display: "block",
+                    });
+
+                    loaderContainer.style.display = "block";
+
+                    dotInterval = setInterval(updateDots, 500);
+
+                    window.addEventListener("DOMContentLoaded", () => {
+                        isPageLoaded = true;
+                    });
+
+                    requestAnimationFrame(updateCount);
+
+                    sessionStorage.setItem(LOADER_KEY, "true");
+                } else {
+                    gsap.set(loader, {
+                        y: "0%",
+                        autoAlpha: 0,
+                        display: "none",
+                    });
+
+                    loaderContainer.style.display = "none";
+
+                    window.addEventListener("DOMContentLoaded", () => {
+                        gsap.set(loader, {
+                            y: "0%",
+                            autoAlpha: 1,
+                            display: "block",
+                        });
+
+                        gsap.to(loader, {
+                            y: "-100%",
+                            duration: 1.2,
+                            ease: "power3.inOut",
+                            onComplete: () => {
+                                gsap.set(loader, {
+                                    y: "0%",
+                                    autoAlpha: 0,
+                                    display: "none",
+                                });
+                            },
+                        });
+                    });
+                }
+            })();
+        </script>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const DESKTOP_MIN = 992;
+
+                const navbar = document.querySelector(".navbar");
+                const staticNav = document.querySelector(".navbar-static");
+
+                let lenis = null;
+
+                let lastScrollY = window.pageYOffset || document.documentElement.scrollTop;
+                let ticking = false;
+
+                let stickAtY = 0;
+
+                const computeStickThreshold = () => {
+                    if (!navbar) return;
+                    stickAtY =
+                        (window.pageYOffset || document.documentElement.scrollTop) + navbar.getBoundingClientRect().top;
+                };
+
+                const setFixed = (value) => {
+                    if (!navbar) return;
+                    navbar.classList.toggle("fixed", value);
+                };
+
+                const onScroll = () => {
+                    if (!navbar || !staticNav) return;
+
+                    const currentY = window.pageYOffset || document.documentElement.scrollTop;
+
+                    if (!ticking) {
+                        ticking = true;
+                        requestAnimationFrame(() => {
+                            const scrollingDown = currentY > lastScrollY;
+                            const scrollingUp = currentY < lastScrollY;
+
+                            if (scrollingDown && currentY >= stickAtY) {
+                                setFixed(true);
+                            }
+
+                            if (scrollingUp) {
+                                const staticTop = staticNav.getBoundingClientRect().top;
+                                if (staticTop >= 0) {
+                                    setFixed(false);
+                                }
+                            }
+
+                            lastScrollY = currentY <= 0 ? 0 : currentY;
+                            ticking = false;
+                        });
+                    }
+                };
+
+                const enableLenis = () => {
+                    if (lenis) return;
+                    lenis = new Lenis({ autoRaf: true });
+                };
+
+                const disableLenis = () => {
+                    if (!lenis) return;
+                    lenis.destroy();
+                    lenis = null;
+                };
+
+                const updateLenisByViewport = () => {
+                    const isDesktop = window.innerWidth >= DESKTOP_MIN;
+                    if (isDesktop) enableLenis();
+                    else disableLenis();
+                };
+
+                computeStickThreshold();
+                updateLenisByViewport();
+
+                window.addEventListener("scroll", onScroll, { passive: true });
+
+                let resizeRaf = null;
+                window.addEventListener(
+                    "resize",
+                    () => {
+                        if (resizeRaf) cancelAnimationFrame(resizeRaf);
+                        resizeRaf = requestAnimationFrame(() => {
+                            computeStickThreshold();
+                            updateLenisByViewport();
+                        });
+                    },
+                    { passive: true }
+                );
+            });
+        </script>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const customCursor = document.getElementById("custom-cursor");
+                if (!customCursor) return;
+
+                let isCursorInitialized = false;
+
+                const handleMouseMove = (e) => {
+                    if (!isCursorInitialized) {
+                        gsap.set(customCursor, { x: e.clientX, y: e.clientY, scale: 0 });
+                        gsap.to(customCursor, { duration: 0.32, scale: 1, ease: "back.out(1.7)" });
+                        isCursorInitialized = true;
+                    } else {
+                        gsap.to(customCursor, {
+                            duration: 0.16,
+                            x: e.clientX,
+                            y: e.clientY,
+                            ease: "power3.out",
+                        });
+                    }
+                };
+
+                function checkViewport() {
+                    if (window.innerWidth > 991) {
+                        document.addEventListener("mousemove", handleMouseMove);
+                    }
+                }
+
+                window.addEventListener("resize", checkViewport);
+                checkViewport();
+            });
+        </script>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                ScrollTrigger.config({ ignoreMobileResize: true });
+                const mmDesktop = window.matchMedia("(min-width: 992px)");
+
+                if (mmDesktop.matches) {
+                    gsap.set(".footer-reveal", { yPercent: -72 });
+
+                    gsap.to(".footer-reveal", {
+                        yPercent: 0,
+                        ease: "none",
+                        scrollTrigger: {
+                            trigger: ".footer",
+                            start: "top bottom",
+                            end: "bottom bottom",
+                            scrub: true,
+                        },
+                    });
+                }
+
+                const footer = document.querySelector("#footer");
+                const overlay = document.querySelector(".bottom-overlay-wrapper");
+
+                if (footer && overlay) {
+                    const isMobile = window.innerWidth <= 768;
+                    const footerThreshold = isMobile ? 0.32 : 0.5;
+
+                    ScrollTrigger.create({
+                        trigger: footer,
+                        start: () => {
+                            const footerHeight = footer.offsetHeight;
+                            return `top bottom-=${footerHeight * footerThreshold}`;
+                        },
+                        onEnter: () => {
+                            overlay.style.display = "none";
+                        },
+                        onLeaveBack: () => {
+                            overlay.style.display = "";
+                        },
+                        invalidateOnRefresh: true,
+                    });
+
+                    let lastW = window.innerWidth;
+                    window.addEventListener(
+                        "resize",
+                        () => {
+                            const w = window.innerWidth;
+                            if (w === lastW) return;
+                            lastW = w;
+
+                            requestAnimationFrame(() => ScrollTrigger.refresh());
+                        },
+                        { passive: true }
+                    );
+                }
+
+                document.querySelectorAll(".footer-back-to-the-top").forEach((el) => {
+                    el.addEventListener("click", function (e) {
+                        e.preventDefault();
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                    });
+                });
+            });
+        </script>
+
+        <script defer>
+            document.addEventListener("DOMContentLoaded", () => {
+                const sections = document.querySelectorAll("#about, #next-case");
+                let img = document.querySelector("#about-image, #next-image");
+
+                if (img && img.tagName === "SPAN") img = img.querySelector("img");
+                if (!sections.length || !img) return;
+
+                const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
+
+                gsap.set(img, {
+                    position: "fixed",
+                    left: 0,
+                    top: 0,
+                    opacity: 0,
+                    scale: 0.8,
+                    x: 0,
+                    y: 0,
+                    rotationX: 0,
+                    rotationY: 0,
+                    scaleX: 1,
+                    scaleY: 1,
+                    transformOrigin: "top left",
+                    transformPerspective: 900,
+                    force3D: true,
+                    pointerEvents: "none",
+                    zIndex: 9999,
+                    willChange: "transform, opacity",
+                });
+
+                let lastX = 0;
+                let lastY = 0;
+                let visible = false;
+
+                let enterDelayCall = null;
+                let idleResetTimer = null;
+                let leaveFollowTimeout = null;
+                let leaveMoveListenerActive = false;
+
+                const xTo = gsap.quickTo(img, "x", { duration: 0.28, ease: "power3.out" });
+                const yTo = gsap.quickTo(img, "y", { duration: 0.28, ease: "power3.out" });
+                const rotXTo = gsap.quickTo(img, "rotationX", { duration: 0.45, ease: "power3.out" });
+                const rotYTo = gsap.quickTo(img, "rotationY", { duration: 0.45, ease: "power3.out" });
+                const scaleXTo = gsap.quickTo(img, "scaleX", { duration: 0.35, ease: "power3.out" });
+                const scaleYTo = gsap.quickTo(img, "scaleY", { duration: 0.35, ease: "power3.out" });
+
+                const showAnim = () => {
+                    gsap.fromTo(
+                        img,
+                        { scale: 0.64, opacity: 0 },
+                        { scale: 1, opacity: 1, duration: 0.32, ease: "back.out(1.7)" }
+                    );
+                };
+
+                const hideAnim = () => {
+                    gsap.to(img, {
+                        opacity: 0,
+                        scale: 0.8,
+                        rotationX: 0,
+                        rotationY: 0,
+                        scaleX: 1,
+                        scaleY: 1,
+                        duration: 0.24,
+                        ease: "power3.out",
+                        onComplete: () => {
+                            visible = false;
+                        },
+                    });
+                };
+
+                function resetTilt() {
+                    rotXTo(0);
+                    rotYTo(0);
+                    scaleXTo(1);
+                    scaleYTo(1);
+                }
+
+                function scheduleIdleResetByNoMove() {
+                    if (idleResetTimer) clearTimeout(idleResetTimer);
+                    idleResetTimer = setTimeout(() => {
+                        resetTilt();
+                    }, 120);
+                }
+
+                function handleEnter(e) {
+                    if (window.innerWidth <= 991) return;
+
+                    const x = e.clientX;
+                    const y = e.clientY;
+
+                    gsap.set(img, {
+                        x: x + 12,
+                        y: y + 12,
+                        scale: 0.8,
+                        opacity: 0,
+                        rotationX: 0,
+                        rotationY: 0,
+                        scaleX: 1,
+                        scaleY: 1,
+                    });
+
+                    lastX = x;
+                    lastY = y;
+
+                    if (leaveFollowTimeout) {
+                        clearTimeout(leaveFollowTimeout);
+                        leaveFollowTimeout = null;
+                    }
+                    if (leaveMoveListenerActive) {
+                        window.removeEventListener("pointermove", handleLeaveMove);
+                        leaveMoveListenerActive = false;
+                    }
+
+                    if (enterDelayCall) enterDelayCall.kill();
+                    enterDelayCall = gsap.delayedCall(0.2, showAnim);
+
+                    scheduleIdleResetByNoMove();
+                }
+
+                function updatePositionAndTilt(x, y) {
+                    const vx = x - lastX;
+                    const vy = y - lastY;
+                    lastX = x;
+                    lastY = y;
+
+                    xTo(x + 12);
+                    yTo(y + 12);
+
+                    const speed = Math.hypot(vx, vy);
+
+                    const speedNorm = clamp(speed / 35, 0, 1);
+                    const tiltMax = 10;
+                    const tilt = tiltMax * speedNorm;
+
+                    const targetRotX = clamp((-vy / 12) * tilt, -tiltMax, tiltMax);
+                    const targetRotY = clamp((vx / 12) * tilt, -tiltMax, tiltMax);
+
+                    rotXTo(targetRotX);
+                    rotYTo(targetRotY);
+
+                    const s = 1 + 0.04 * speedNorm;
+                    scaleXTo(s);
+                    scaleYTo(s);
+
+                    scheduleIdleResetByNoMove();
+                }
+
+                function handleMove(e) {
+                    if (window.innerWidth <= 991) return;
+                    if (!visible) visible = true;
+                    updatePositionAndTilt(e.clientX, e.clientY);
+                }
+
+                function handleLeaveMove(e) {
+                    updatePositionAndTilt(e.clientX, e.clientY);
+                }
+
+                function handleLeave() {
+                    if (enterDelayCall) {
+                        enterDelayCall.kill();
+                        enterDelayCall = null;
+                    }
+                    if (idleResetTimer) {
+                        clearTimeout(idleResetTimer);
+                        idleResetTimer = null;
+                    }
+
+                    hideAnim();
+
+                    if (!leaveMoveListenerActive) {
+                        window.addEventListener("pointermove", handleLeaveMove);
+                        leaveMoveListenerActive = true;
+                    }
+
+                    leaveFollowTimeout = setTimeout(() => {
+                        if (leaveMoveListenerActive) {
+                            window.removeEventListener("pointermove", handleLeaveMove);
+                            leaveMoveListenerActive = false;
+                        }
+                    }, 1000);
+                }
+
+                sections.forEach((section) => {
+                    section.addEventListener("pointerenter", handleEnter);
+                    section.addEventListener("pointermove", handleMove);
+                    section.addEventListener("pointerleave", handleLeave);
+                });
+
+                window.addEventListener("resize", () => {
+                    if (window.innerWidth <= 991) {
+                        gsap.set(img, { opacity: 0, scale: 0.8, rotationX: 0, rotationY: 0, scaleX: 1, scaleY: 1 });
+                        visible = false;
+
+                        if (enterDelayCall) {
+                            enterDelayCall.kill();
+                            enterDelayCall = null;
+                        }
+                        if (idleResetTimer) {
+                            clearTimeout(idleResetTimer);
+                            idleResetTimer = null;
+                        }
+
+                        if (leaveFollowTimeout) {
+                            clearTimeout(leaveFollowTimeout);
+                            leaveFollowTimeout = null;
+                        }
+                        if (leaveMoveListenerActive) {
+                            window.removeEventListener("pointermove", handleLeaveMove);
+                            leaveMoveListenerActive = false;
+                        }
+                    }
+                });
+            });
+        </script>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const MOBILE_MAX = 767;
+                const OFFSET = 64;
+
+                const button = document.querySelector(".case-info-button");
+                const floating = document.querySelector(".case-info.scrollable");
+                const next = document.querySelector(".case-next");
+
+                if (!button || !floating || !next || typeof gsap === "undefined") return;
+
+                let ioButton = null;
+                let ioNext = null;
+                let bottomSentinel = null;
+                let nextSentinel = null;
+
+                let passedButton = false;
+                let reachedNext = false;
+                let active = false;
+
+                const show = () => {
+                    if (floating.classList.contains("visible")) return;
+
+                    floating.classList.add("visible");
+                    gsap.killTweensOf(floating);
+
+                    gsap.to(floating, {
+                        scale: 1,
+                        opacity: 1,
+                        duration: 0.32,
+                        ease: "power2.out",
+                        overwrite: "auto",
+                    });
+                };
+
+                const hide = (immediate = false) => {
+                    gsap.killTweensOf(floating);
+
+                    if (immediate) {
+                        floating.classList.remove("visible");
+                        gsap.set(floating, { scale: 0.88, opacity: 0 });
+                        return;
+                    }
+
+                    if (!floating.classList.contains("visible")) return;
+
+                    gsap.to(floating, {
+                        scale: 0.88,
+                        opacity: 0,
+                        duration: 0.24,
+                        ease: "power2.out",
+                        overwrite: "auto",
+                        onComplete: () => floating.classList.remove("visible"),
+                    });
+                };
+
+                const update = () => {
+                    if (passedButton && !reachedNext) show();
+                    else hide();
+                };
+
+                const initMobile = () => {
+                    if (active) return;
+                    active = true;
+
+                    gsap.set(floating, {
+                        scale: 0.88,
+                        opacity: 0,
+                        transformOrigin: "50% 50%",
+                        willChange: "transform, opacity",
+                    });
+                    floating.classList.remove("visible");
+
+                    bottomSentinel = document.createElement("div");
+                    bottomSentinel.style.cssText = `
+        position:absolute;
+        left:0; right:0; bottom:0;
+        height:1px;
+        pointer-events:none;
+      `;
+                    button.style.position ||= "relative";
+                    button.appendChild(bottomSentinel);
+
+                    nextSentinel = document.createElement("div");
+                    nextSentinel.style.cssText = `
+        position:relative;
+        height:1px;
+        top:-${OFFSET}px;
+        pointer-events:none;
+      `;
+                    next.parentNode.insertBefore(nextSentinel, next);
+
+                    passedButton = false;
+                    reachedNext = false;
+
+                    ioButton = new IntersectionObserver(([e]) => {
+                        if (!e.isIntersecting && e.boundingClientRect.top < 0) passedButton = true;
+                        if (e.isIntersecting || e.boundingClientRect.top >= 0) passedButton = false;
+                        update();
+                    });
+
+                    ioNext = new IntersectionObserver(([e]) => {
+                        reachedNext = e.isIntersecting;
+                        if (!e.isIntersecting && e.boundingClientRect.top < 0) reachedNext = true;
+                        if (!e.isIntersecting && e.boundingClientRect.top > 0) reachedNext = false;
+                        update();
+                    });
+
+                    ioButton.observe(bottomSentinel);
+                    ioNext.observe(nextSentinel);
+                };
+
+                const destroyMobile = () => {
+                    if (!active) return;
+                    active = false;
+
+                    ioButton?.disconnect();
+                    ioNext?.disconnect();
+
+                    ioButton = null;
+                    ioNext = null;
+
+                    bottomSentinel?.remove();
+                    nextSentinel?.remove();
+
+                    bottomSentinel = null;
+                    nextSentinel = null;
+
+                    hide(true);
+                };
+
+                const check = () => {
+                    if (window.innerWidth <= MOBILE_MAX) initMobile();
+                    else destroyMobile();
+                };
+
+                check();
+
+                window.addEventListener("resize", () => {
+                    requestAnimationFrame(check);
+                });
+            });
+        </script>
+    </body>
+</html>

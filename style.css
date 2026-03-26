@@ -1,0 +1,183 @@
+@media (width > 991px) {
+                * {
+                    cursor: none !important;
+                }
+            }
+
+            ::selection {
+                color: var(--black);
+                background-color: var(--primary);
+            }
+
+            footer ::selection {
+                color: var(--primary);
+                background-color: var(--black);
+            }
+
+            html,
+            body {
+                background: black;
+            }
+
+            body {
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+
+            .bar-track {
+                animation: scroll 40s linear infinite;
+            }
+
+            #loader[hidden] {
+                display: none !important;
+                visibility: hidden !important;
+                pointer-events: none !important;
+            }
+
+            @keyframes scroll {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(-50%);
+                }
+            }
+
+            .bar-track:hover {
+                animation-play-state: paused;
+            }
+
+            .navbar.fixed {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 2137;
+            }
+
+            .custom-cursor {
+                transform: translate(-50%, -50%) scale(0);
+                mix-blend-mode: difference;
+            }
+
+            .button-v2 {
+                transition: transform 0.6s cubic-bezier(0.34, 2.48, 0.48, 1);
+            }
+
+            .button-v2-ripple {
+                border-radius: 50% 50% 0 0;
+                transform: translateY(104%);
+                transition:
+                    transform 0.5s cubic-bezier(0.4, 0, 0, 1),
+                    border-radius 0.5s cubic-bezier(0.4, 0, 0, 1);
+                will-change: auto;
+            }
+
+            .button-v2-text {
+                transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            .button-v2-text div + div {
+                color: black;
+            }
+
+            .button-v2:hover {
+                transform: scaleX(1.02);
+                transition: transform 0.6s cubic-bezier(0.34, 3.64, 0.64, 1);
+            }
+
+            .button-v2:hover .button-v2-text {
+                transform: translateY(-52%);
+            }
+
+            .button-v2:hover .button-v2-ripple {
+                transition-duration: 0.5s, 0.9s;
+                transform: translateY(0%);
+                border-radius: 0%;
+            }
+
+            .footer-content-right.more:has(.footer-socials:hover) .find-me-on-arrow {
+                transform: translateX(12px);
+            }
+
+            .footer-back-to-the-top:hover svg {
+                transform: translateY(-12px);
+            }
+/* Hide the default cursor only on the hovered link */
+            @media (width > 1024px) {
+                .case-link:hover {
+                    cursor: none;
+                }
+            }
+
+            .hero-title-italic {
+                position: relative;
+                display: inline-block;
+                font-style: italic;
+                font-weight: bold;
+                color: black;
+                z-index: 1;
+
+                --glitch-opacity: 0;
+                --glitch-offset-before: 0px;
+                --glitch-offset-after: 0px;
+                --glitch-skew: 0deg;
+                --glitch-scale: 1;
+            }
+
+            .hero-title-italic::before,
+            .hero-title-italic::after {
+                content: attr(data-text);
+                position: absolute;
+                top: 0;
+                left: 0;
+                white-space: nowrap;
+                pointer-events: none;
+                mix-blend-mode: difference;
+                opacity: var(--glitch-opacity);
+                z-index: 2;
+                transform-origin: center;
+            }
+
+            .hero-title-italic::before {
+                color: white;
+                transform: translateX(var(--glitch-offset-before)) skewX(var(--glitch-skew)) scaleX(var(--glitch-scale));
+            }
+
+            .hero-title-italic::after {
+                color: black;
+                transform: translateX(var(--glitch-offset-after)) skewX(calc(var(--glitch-skew) * -1))
+                    scaleX(var(--glitch-scale));
+            }
+
+            @media (width > 992px) {
+                :is(.dribbble-case img, .case-link img) {
+                    transition: 0.32s cubic-bezier(0.34, 2.56, 0.64, 1);
+                }
+
+                :is(.dribbble-case, .case-link):hover img {
+                    rotate: -2deg;
+                }
+            }
+
+            .works-content:has(.case-link:hover) .works-link-arrow {
+                margin: 0;
+            }
+
+            .contra-verified:hover .verified-arrow {
+                margin: 0;
+            }
+
+            @media (width > 767px) {
+                .right-hero-cta:hover svg {
+                    margin: 0;
+                }
+            }
+
+            .at-riotters::before {
+                content: "";
+                display: inline-block;
+                background: url(https://cdn.prod.website-files.com/669ffd7536d2d5697935b89b/6972784858d2e32b7897b7b0_Riotters.svg);
+                width: 12px;
+                height: 12px;
+            }
