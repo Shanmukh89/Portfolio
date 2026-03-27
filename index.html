@@ -294,14 +294,14 @@
                                 </p>
                             </div>
                             <p class="content-left-title timezone mobile-hidden">
-                                <span class="warsaw-time">04:04 am</span> GMT+1
+                                <span class="warsaw-time" id="ist-clock"></span> IST
                             </p>
                         </div>
                         <div class="line"></div>
                         <div class="content-right hero-content-right">
                             <div class="right-hero-text-wrapper">
                                 <h1 class="content-right-title hero-title">
-                                     Creative Developer helping your
+                                    Creative Developer helping your
                                     <span data-text="ideas take off." class="hero-title-italic">ideas take off.</span>
                                 </h1>
                             </div>
@@ -1341,6 +1341,18 @@
                 });
             });
         </script>
+        <script>
+  function updateISTClock() {
+    document.getElementById('ist-clock').textContent = new Date().toLocaleTimeString('en-IN', {
+      timeZone: 'Asia/Kolkata',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true
+    });
+  }
+  updateISTClock();
+  setInterval(updateISTClock, 1000);
+</script>
         <script src="main.js"></script>
     </body>
 </html>
